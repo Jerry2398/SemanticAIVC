@@ -1,0 +1,24 @@
+{
+  "input": "expression_5000HVG_lognorm",
+  "n_train": 120000,
+  "n_val": 58500,
+  "n_classes": 380,
+  "chance_accuracy": 0.0424957264957265,
+  "reference_latent_DD": {
+    "baseline_gauss": 0.037,
+    "best_identity_mlp_l100": 0.058,
+    "best_identity_linear_l100": 0.062
+  },
+  "mlp": {
+    "accuracy": 0.03863247863247863,
+    "macro_f1": 0.005698522120210648,
+    "weighted_f1": 0.009473882293710573,
+    "top5_accuracy": 0.08507692307692308
+  },
+  "linear": {
+    "accuracy": 0.01123076923076923,
+    "macro_f1": 0.005746366535426846,
+    "weighted_f1": 0.008213281849502277,
+    "top5_accuracy": 0.038205128205128204
+  }
+}

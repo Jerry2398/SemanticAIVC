@@ -1,0 +1,13 @@
+{
+  "metric": "MOA-D",
+  "label_col": "pathway",
+  "probe": "linear",
+  "n_classes": 20,
+  "n_train": 559094,
+  "n_val": 186123,
+  "n_val_dropped_unseen_class": 0,
+  "accuracy": 0.23193801948174056,
+  "macro_f1": 0.036449098107229995,
+  "weighted_f1": 0.13117145748056777,
+  "chance_accuracy": 0.2306270584505945
+}

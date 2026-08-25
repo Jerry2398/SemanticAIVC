@@ -1,0 +1,16 @@
+{
+  "metric": "DoseD",
+  "dose_col": "dose",
+  "probe": "linear",
+  "log10_scaled": true,
+  "n_val": 186123,
+  "mae": 0.9765492490373664,
+  "r2": 0.0014827287088332586,
+  "mae_raw_dose": 2465.9337840112926,
+  "unique_doses": [
+    10.0,
+    100.0,
+    1000.0,
+    10000.0
+  ]
+}

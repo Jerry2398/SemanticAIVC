@@ -1,0 +1,15 @@
+{
+  "metric": "PGC",
+  "drug_col": "condition",
+  "moa_col": "pathway",
+  "distance_metric": "cosine",
+  "n_drugs": 188,
+  "n_drugs_used": 186,
+  "n_moa_classes": 18,
+  "n_dropped_singleton_moa": 2,
+  "silhouette": -0.45246174931526184,
+  "within_moa_dist": 0.09011001139879227,
+  "between_moa_dist": 0.09024719148874283,
+  "within_between_ratio": 0.998479962348938,
+  "ratio_perm_p": 0.484
+}

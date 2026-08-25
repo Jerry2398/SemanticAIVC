@@ -1,0 +1,55 @@
+# ============================================================
+# SemanticDiff .gitignore
+# ============================================================
+
+# ---------- 日志（不追踪）----------
+*.out
+*.log
+*.err
+logs/
+_logs/
+slurm-*
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.ipynb_checkpoints/
+
+# ---------- 虚拟环境 ----------
+venv/
+.venv/
+env/
+envs/
+*_venv/
+
+# ---------- 大文件 / 中间产物（按需删减）----------
+# 模型权重与检查点
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+# 单细胞数据与数组
+*.h5ad
+*.h5
+*.loom
+*.npy
+*.npz
+*.pkl
+*.pickle
+# 常见缓存目录
+data/
+checkpoints/
+wandb/
+cache/
+.cache/
+
+# ---------- 编辑器 / 系统 ----------
+.vscode/
+.idea/
+.DS_Store
+*.swp

@@ -1,0 +1,53 @@
+{
+  "experiment": "pseudobulk_DD",
+  "n_classes": 380,
+  "k_cl": 10,
+  "reference_singlecell_mlp": 0.039,
+  "results": {
+    "1": {
+      "B": 1,
+      "n_train_bulk": 60640,
+      "n_val_bulk": 60640,
+      "n_drugs_val": 379,
+      "chance": 0.002638522427440633,
+      "mlp": {
+        "accuracy": 0.025098944591029022,
+        "macro_f1": 0.018226197331263322
+      },
+      "linear": {
+        "accuracy": 0.014841688654353561,
+        "macro_f1": 0.009523363600192994
+      }
+    },
+    "16": {
+      "B": 16,
+      "n_train_bulk": 60613,
+      "n_val_bulk": 43924,
+      "n_drugs_val": 379,
+      "chance": 0.0027319916218923597,
+      "mlp": {
+        "accuracy": 0.22739276932884073,
+        "macro_f1": 0.2308812768560566
+      },
+      "linear": {
+        "accuracy": 0.17573536107822602,
+        "macro_f1": 0.1850696741793446
+      }
+    },
+    "64": {
+      "B": 64,
+      "n_train_bulk": 22687,
+      "n_val_bulk": 10765,
+      "n_drugs_val": 379,
+      "chance": 0.002786809103576405,
+      "mlp": {
+        "accuracy": 0.2924291686019508,
+        "macro_f1": 0.28927991135387615
+      },
+      "linear": {
+        "accuracy": 0.21142591732466326,
+        "macro_f1": 0.21637097633730593
+      }
+    }
+  }
+}

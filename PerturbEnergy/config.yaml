@@ -1,0 +1,85 @@
+# ============================================================================
+# PerturbEnergy configuration (all tunables live here)
+#   x : gene expression (5000-HVG log-norm)   c : cellular context (cell line)
+#   a : perturbation label (drug)             z_b: basal repr   z_a: perturbation repr
+# Data / optimizer defaults are aligned with the previously trained Tahoe VAEs
+# (5000 HVG, log-norm, shard-level split, batch 512, AdamW lr 1e-3) so that all
+# downstream metrics stay comparable.
+# ============================================================================
+
+data:
+  batch_size: 512
+  num_workers: 8
+  val_every: 20                  # every 20th shard -> val (same split as all prior models)
+  cond_col: cell_line_id         # c
+  pert_col: drug                 # a
+  control_label: DMSO_TF         # vehicle control
+  # pre-extracted val/train cells used by evaluate.py (same cells as the LDM eval)
+  train_emb: /scratch/Projects/CFP-03/CFP03-CF-130/yuchen.yan/datasets/tahoe/embeddings/tahoe_vae_train.h5ad
+  val_emb:   /scratch/Projects/CFP-03/CFP03-CF-130/yuchen.yan/datasets/tahoe/embeddings/tahoe_vae_val.h5ad
+
+model:
+  z_b_dim: 32                    # basal latent  (32+32; set 16/16 for a dim-matched 32-d baseline)
+  z_a_dim: 32                    # perturbation latent
+  hidden: 512                    # scGen-style width (same as our Tahoe VAEs)
+  depth: 2                       # hidden layers per encoder/decoder
+  dropout: 0.1
+  norm: layer                    # layer | batch
+  cond_emb_dim: 64               # embedding dim for c
+  pert_emb_dim: 64               # embedding dim for a
+  n_candidates: 4                # M candidate z_a drawn per cell; the energy picks one
+  select_mode: min               # min = lowest energy | softmax = sample with p ~ exp(-E/tau)
+  select_tau: 1.0                # temperature for select_mode=softmax
+  energy:                        # E_alpha(z_a, z_b, a) -> scalar
+    hidden: 512
+    depth: 2
+    dropout: 0.0
+    spectral_norm: false
+
+loss:
+  recon: mse+mmd                 # mse | mmd | mse+mmd  (paper approximates log p_theta with MMD)
+  mmd_weight: 10.0
+  mmd_scales: [1.0, 2.0, 5.0, 10.0, 20.0]
+  beta_kl_b: 5.0e-5              # KL(q(z_b)||N(0,I)) -- scGen-level weight (deliberately small)
+  beta_kl_a: 5.0e-5              # KL(q(z_a)||N(0,I))
+  kl_warmup: 5000                # steps to ramp both KL weights 0 -> beta
+  energy_elbo_weight: 1.0        # weight on +E_q[E_alpha] inside the VAE objective (Eq.16)
+  # --- PerturbedVAE-style invariance of z_b across perturbed / control cells (Eq.4-5) ---
+  # forces z_b to be perturbation-INVARIANT so that z_a must carry the perturbation, and
+  # removes the train(autoencode)/inference(start from a control cell) mismatch.
+  contrast_weight: 0.5           # alpha; 0 disables (and skips the paired data stream)
+  contrast_mode: pair            # pair (literal Eq.4, context-matched partner) | centroid
+  contrast_warmup: 2000          # steps to ramp alpha 0 -> contrast_weight
+
+langevin:                        # negative sampling from p_alpha(z_a|z_b,a), Eq.15
+  # the chain starts from ANOTHER cell's positive z_a in the batch (a valid representation
+  # for a different condition = an informative negative for this one), not from white noise.
+  steps: 20                      # K
+  step_size: 0.1                 # eta
+  noise_scale: 1.0               # multiplier on sqrt(eta)*eps (0 -> deterministic gradient descent)
+  clamp: 10.0                    # clamp |z_a| during sampling for stability (0 = off)
+
+optim:
+  vae_lr: 1.0e-3                 # {theta, phi_b, phi_a}
+  energy_lr: 1.0e-4              # alpha  (slower: EBM stability)
+  weight_decay: 1.0e-5
+  grad_clip: 5.0
+  energy_l2_reg: 0.001           # L2 on E(z+),E(z-) magnitudes, keeps the scale near 0
+  use_margin: true               # hinge max(0, margin + E(z+) - E(z-)) instead of a raw difference
+  margin: 1.0                    # target energy gap between positives and negatives
+  energy_update_every: 1         # update alpha every N steps
+
+train:
+  max_steps: 100000
+  eval_every: 5000
+  seed: 0
+  out_dir: /scratch/Projects/CFP-03/CFP03-CF-130/yuchen.yan/models/perturbenergy
+
+eval:
+  n_per_group: 300               # control cells used per (cell_line, drug) group
+  max_groups: 60                 # eval the N largest groups (same as the LDM eval)
+  min_cells: 50
+  top_degs: 50
+  m_samples: 16                  # M candidate z_a per cell; lowest energy is kept (Inference step iii)
+  probe_cells: 60000             # cells used for the DD probes / PP-SNR
+  retrieval_cells: 4000          # cells scored against all candidate drugs in the retrieval task

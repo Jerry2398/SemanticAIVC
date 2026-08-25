@@ -1,0 +1,13 @@
+{
+  "metric": "DD",
+  "label_col": "condition",
+  "probe": "linear",
+  "n_classes": 2,
+  "n_train": 18623,
+  "n_val": 6050,
+  "n_val_dropped_unseen_class": 0,
+  "accuracy": 0.9771900826446281,
+  "macro_f1": 0.9771785504943636,
+  "weighted_f1": 0.9771858428835013,
+  "chance_accuracy": 0.5071074380165289
+}

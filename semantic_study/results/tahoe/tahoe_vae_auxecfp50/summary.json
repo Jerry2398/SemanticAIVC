@@ -1,0 +1,111 @@
+{
+  "ger": {
+    "metric": "GER",
+    "probe": "linear",
+    "n_genes": 5000,
+    "n_val_cells": 58500,
+    "gene_wise_pearson": 0.11364322155714035,
+    "cell_wise_pearson": 0.5843338966369629,
+    "gene_wise_r2": 0.039901003241539,
+    "cell_wise_r2": 0.3421218693256378,
+    "gene_wise_pearson_median": 0.028204910457134247,
+    "cell_wise_pearson_median": 0.5874204635620117
+  },
+  "ctd": {
+    "metric": "CTD",
+    "label_col": "cell_line_id",
+    "probe": "linear",
+    "n_classes": 50,
+    "n_train": 120000,
+    "n_val": 58500,
+    "n_val_dropped_unseen_class": 0,
+    "accuracy": 0.9723931623931624,
+    "macro_f1": 0.9159062916739552,
+    "weighted_f1": 0.9721185200272475,
+    "chance_accuracy": 0.08839316239316239
+  },
+  "dd": {
+    "metric": "DD",
+    "label_col": "drug",
+    "probe": "linear",
+    "n_classes": 380,
+    "n_train": 120000,
+    "n_val": 58500,
+    "n_val_dropped_unseen_class": 0,
+    "accuracy": 0.03535042735042735,
+    "macro_f1": 0.0027983720060756737,
+    "weighted_f1": 0.006211734442019319,
+    "chance_accuracy": 0.0424957264957265
+  },
+  "moa_d": {
+    "metric": "MOA-D",
+    "label_col": "moa-fine",
+    "probe": "linear",
+    "n_classes": 27,
+    "n_train": 120000,
+    "n_val": 58500,
+    "n_val_dropped_unseen_class": 0,
+    "accuracy": 0.5834871794871795,
+    "macro_f1": 0.03355595791486732,
+    "weighted_f1": 0.4302241651789844,
+    "chance_accuracy": 0.5833162393162393
+  },
+  "egc": {
+    "metric": "EGC",
+    "n_cells": 3000,
+    "n_perm": 999,
+    "mantel": {
+      "pearson": {
+        "mantel_r": 0.37937819957733154,
+        "mantel_p": 0.001
+      },
+      "cosine": {
+        "mantel_r": 0.36848482489585876,
+        "mantel_p": 0.001
+      },
+      "euclidean": {
+        "mantel_r": 0.3941536158967139,
+        "mantel_p": 0.001
+      }
+    },
+    "distance_correlation": 0.7494661120332482
+  },
+  "lnp": {
+    "metric": "LNP",
+    "n_cells": 5000,
+    "jaccard_by_k": {
+      "10": {
+        "jaccard": 0.08256035167103278,
+        "chance": 0.002000400080016003
+      },
+      "30": {
+        "jaccard": 0.1122198978542869,
+        "chance": 0.006001200240048009
+      },
+      "50": {
+        "jaccard": 0.12736511246912358,
+        "chance": 0.010002000400080016
+      },
+      "100": {
+        "jaccard": 0.1477210981080948,
+        "chance": 0.020004000800160033
+      }
+    },
+    "mean_jaccard": 0.11746661502563452
+  },
+  "pgc": {
+    "metric": "PGC",
+    "drug_col": "drug",
+    "moa_col": "moa-fine",
+    "distance_metric": "cosine",
+    "n_drugs": 303,
+    "n_drugs_used": 300,
+    "n_moa_classes": 21,
+    "n_dropped_singleton_moa": 3,
+    "silhouette": -0.27532127499580383,
+    "within_moa_dist": 0.9302217960357666,
+    "between_moa_dist": 0.9204496145248413,
+    "within_between_ratio": 1.0106167793273926,
+    "ratio_perm_p": 0.777
+  }
+}

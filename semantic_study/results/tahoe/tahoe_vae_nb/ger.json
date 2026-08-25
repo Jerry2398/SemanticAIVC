@@ -1,0 +1,12 @@
+{
+  "metric": "GER",
+  "probe": "linear",
+  "n_genes": 5000,
+  "n_val_cells": 58500,
+  "gene_wise_pearson": 0.11297035217285156,
+  "cell_wise_pearson": 0.5643439292907715,
+  "gene_wise_r2": 0.03715944662690163,
+  "cell_wise_r2": 0.31328651309013367,
+  "gene_wise_pearson_median": 0.03441823646426201,
+  "cell_wise_pearson_median": 0.5671787858009338
+}

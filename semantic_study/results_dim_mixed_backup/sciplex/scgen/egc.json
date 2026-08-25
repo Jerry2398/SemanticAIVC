@@ -1,0 +1,20 @@
+{
+  "metric": "EGC",
+  "n_cells": 3000,
+  "n_perm": 999,
+  "mantel": {
+    "pearson": {
+      "mantel_r": 0.6086888313293457,
+      "mantel_p": 0.001
+    },
+    "cosine": {
+      "mantel_r": 0.6003047227859497,
+      "mantel_p": 0.001
+    },
+    "euclidean": {
+      "mantel_r": 0.8585005038509824,
+      "mantel_p": 0.001
+    }
+  },
+  "distance_correlation": 0.908350759108221
+}

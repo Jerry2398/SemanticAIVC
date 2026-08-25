@@ -1,0 +1,13 @@
+{
+  "metric": "DD",
+  "label_col": "drug",
+  "probe": "linear",
+  "n_classes": 380,
+  "n_train": 120000,
+  "n_val": 58500,
+  "n_val_dropped_unseen_class": 0,
+  "accuracy": 0.03676923076923077,
+  "macro_f1": 0.0030712112064364403,
+  "weighted_f1": 0.0062524143479947055,
+  "chance_accuracy": 0.0424957264957265
+}

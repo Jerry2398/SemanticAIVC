@@ -1,0 +1,13 @@
+{
+  "metric": "CTD",
+  "label_col": "cell_type",
+  "probe": "linear",
+  "n_classes": 8,
+  "n_train": 18623,
+  "n_val": 6050,
+  "n_val_dropped_unseen_class": 0,
+  "accuracy": 0.9560330578512397,
+  "macro_f1": 0.9241591362095658,
+  "weighted_f1": 0.9560553504845397,
+  "chance_accuracy": 0.45553719008264465
+}

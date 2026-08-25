@@ -1,0 +1,13 @@
+{
+  "metric": "MOA-D",
+  "label_col": "moa-fine",
+  "probe": "linear",
+  "n_classes": 27,
+  "n_train": 120000,
+  "n_val": 58500,
+  "n_val_dropped_unseen_class": 0,
+  "accuracy": 0.5904444444444444,
+  "macro_f1": 0.1107530325663539,
+  "weighted_f1": 0.4473984855972005,
+  "chance_accuracy": 0.5833162393162393
+}

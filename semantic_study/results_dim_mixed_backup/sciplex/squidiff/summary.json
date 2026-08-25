@@ -1,0 +1,132 @@
+{
+  "ger": {
+    "metric": "GER",
+    "probe": "linear",
+    "n_genes": 200,
+    "n_val_cells": 56884,
+    "gene_wise_pearson": 0.13770562410354614,
+    "cell_wise_pearson": 0.48937276005744934,
+    "gene_wise_r2": 0.08297059684991837,
+    "cell_wise_r2": 0.0735601931810379,
+    "gene_wise_pearson_median": 0.003811732865869999,
+    "cell_wise_pearson_median": 0.5616682171821594
+  },
+  "ctd": {
+    "metric": "CTD",
+    "label_col": "cell_type",
+    "probe": "linear",
+    "n_classes": 3,
+    "n_train": 170655,
+    "n_val": 56884,
+    "n_val_dropped_unseen_class": 0,
+    "accuracy": 0.9678995851205963,
+    "macro_f1": 0.9667126004931733,
+    "weighted_f1": 0.9677775265138949,
+    "chance_accuracy": 0.5020919766542438
+  },
+  "dd": {
+    "metric": "DD",
+    "label_col": "condition",
+    "probe": "linear",
+    "n_classes": 187,
+    "n_train": 170655,
+    "n_val": 56884,
+    "n_val_dropped_unseen_class": 0,
+    "accuracy": 0.9714858308135855,
+    "macro_f1": 0.970610352200964,
+    "weighted_f1": 0.9713919336062199,
+    "chance_accuracy": 0.010161029463469516
+  },
+  "dose_d": {
+    "metric": "DoseD",
+    "dose_col": "dose",
+    "probe": "linear",
+    "log10_scaled": true,
+    "n_val": 56884,
+    "mae": 0.4416158131747016,
+    "r2": 0.731524494707198,
+    "mae_raw_dose": 2325.698251374652,
+    "unique_doses": [
+      10.0,
+      100.0,
+      1000.0,
+      10000.0
+    ]
+  },
+  "moa_d": {
+    "metric": "MOA-D",
+    "label_col": "pathway",
+    "probe": "linear",
+    "n_classes": 20,
+    "n_train": 170655,
+    "n_val": 56884,
+    "n_val_dropped_unseen_class": 0,
+    "accuracy": 0.564991913367555,
+    "macro_f1": 0.6361069059662914,
+    "weighted_f1": 0.5666064228475387,
+    "chance_accuracy": 0.21181703115111455
+  },
+  "egc": {
+    "metric": "EGC",
+    "n_cells": 3000,
+    "n_perm": 999,
+    "mantel": {
+      "pearson": {
+        "mantel_r": 0.36130353808403015,
+        "mantel_p": 0.001
+      },
+      "cosine": {
+        "mantel_r": 0.34708935022354126,
+        "mantel_p": 0.001
+      },
+      "euclidean": {
+        "mantel_r": 0.5651863734344544,
+        "mantel_p": 0.001
+      }
+    },
+    "distance_correlation": 0.814196849645705
+  },
+  "lnp": {
+    "metric": "LNP",
+    "n_cells": 5000,
+    "jaccard_by_k": {
+      "10": {
+        "jaccard": 0.0052508427932576535,
+        "chance": 0.002000400080016003
+      },
+      "30": {
+        "jaccard": 0.011086864367521295,
+        "chance": 0.006001200240048009
+      },
+      "50": {
+        "jaccard": 0.017129965495925787,
+        "chance": 0.010002000400080016
+      },
+      "100": {
+        "jaccard": 0.02913672930172596,
+        "chance": 0.020004000800160033
+      }
+    },
+    "mean_jaccard": 0.015651100489607675
+  },
+  "cog": {
+    "metric": "COG",
+    "status": "skipped",
+    "reason": "sciplex has only 3 cancer cell lines, which do not form a meaningful Cell Ontology tree. Provide --ontology_csv (and/or use an ontology-structured dataset like PBMC) to enable COG."
+  },
+  "pgc": {
+    "metric": "PGC",
+    "drug_col": "condition",
+    "moa_col": "pathway",
+    "distance_metric": "cosine",
+    "n_drugs": 187,
+    "n_drugs_used": 185,
+    "n_moa_classes": 18,
+    "n_dropped_singleton_moa": 2,
+    "silhouette": -0.44655752182006836,
+    "within_moa_dist": 0.16059362888336182,
+    "between_moa_dist": 0.15596313774585724,
+    "within_between_ratio": 1.0296896696090698,
+    "ratio_perm_p": 0.593
+  }
+}

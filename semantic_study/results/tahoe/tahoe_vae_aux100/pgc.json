@@ -1,0 +1,15 @@
+{
+  "metric": "PGC",
+  "drug_col": "drug",
+  "moa_col": "moa-fine",
+  "distance_metric": "cosine",
+  "n_drugs": 303,
+  "n_drugs_used": 300,
+  "n_moa_classes": 21,
+  "n_dropped_singleton_moa": 3,
+  "silhouette": -0.3508036434650421,
+  "within_moa_dist": 0.2981411814689636,
+  "between_moa_dist": 0.3305872082710266,
+  "within_between_ratio": 0.9018533229827881,
+  "ratio_perm_p": 0.007
+}

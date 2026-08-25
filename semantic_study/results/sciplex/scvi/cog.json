@@ -1,0 +1,5 @@
+{
+  "metric": "COG",
+  "status": "skipped",
+  "reason": "sciplex has only 3 cancer cell lines, which do not form a meaningful Cell Ontology tree. Provide --ontology_csv (and/or use an ontology-structured dataset like PBMC) to enable COG."
+}

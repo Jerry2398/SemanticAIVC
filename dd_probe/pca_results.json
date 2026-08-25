@@ -1,0 +1,32 @@
+{
+  "experiment": "PCA_expression_DD",
+  "n_classes": 380,
+  "chance": 0.0424957264957265,
+  "reference": {
+    "full5000_mlp": 0.039,
+    "vae_latent32_baseline": 0.037,
+    "vae_latent32_sup": 0.062
+  },
+  "pca32": {
+    "explained_var": 0.25583377480506897,
+    "mlp": {
+      "accuracy": 0.03796581196581197,
+      "macro_f1": 0.0035799040295705826
+    },
+    "linear": {
+      "accuracy": 0.022854700854700854,
+      "macro_f1": 0.002890475105509561
+    }
+  },
+  "pca128": {
+    "explained_var": 0.4237050712108612,
+    "mlp": {
+      "accuracy": 0.03784615384615385,
+      "macro_f1": 0.007074411708453359
+    },
+    "linear": {
+      "accuracy": 0.023418803418803417,
+      "macro_f1": 0.008997531743178851
+    }
+  }
+}
