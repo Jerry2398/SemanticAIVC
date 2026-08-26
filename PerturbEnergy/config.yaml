@@ -25,8 +25,13 @@ model:
   depth: 2                       # hidden layers per encoder/decoder
   dropout: 0.1
   norm: layer                    # layer | batch
+  fusion: add                    # how z_b / z_a / embeddings are combined: add | concat
+  fuse_dim: 512                  # common space for fusion=add (ignored for concat)
   cond_emb_dim: 64               # embedding dim for c
   pert_emb_dim: 64               # embedding dim for a
+  use_energy: true               # false -> ABLATION: drop E_alpha entirely (plain VAE:
+                                 #   2 encoders + decoder + the 2 embedding tables; recon,
+                                 #   both KLs and the z_b-contrastive term stay identical)
   n_candidates: 4                # M candidate z_a drawn per cell; the energy picks one
   select_mode: min               # min = lowest energy | softmax = sample with p ~ exp(-E/tau)
   select_tau: 1.0                # temperature for select_mode=softmax
@@ -50,6 +55,11 @@ loss:
   contrast_weight: 0.5           # alpha; 0 disables (and skips the paired data stream)
   contrast_mode: pair            # pair (literal Eq.4, context-matched partner) | centroid
   contrast_warmup: 2000          # steps to ramp alpha 0 -> contrast_weight
+  # --- auxiliary drug classifier on z_a (train-time only, discarded afterwards) ---
+  # 2-layer MLP head, same shape as the earlier Tahoe-VAE drug-head experiments.
+  aux_ce_weight: 0.0             # 0 disables; 100 = the best weight found in those runs
+  aux_hidden: 256
+  aux_dropout: 0.1
 
 langevin:                        # negative sampling from p_alpha(z_a|z_b,a), Eq.15
   # the chain starts from ANOTHER cell's positive z_a in the batch (a valid representation

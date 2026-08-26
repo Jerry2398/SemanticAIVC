@@ -332,7 +332,11 @@ def main():
         print("\n=== PERTURBATION PREDICTION (avg over groups) ===")
         for k2, v in s.items():
             print(f"  {k2:20s}: {v:.4f}" if isinstance(v, float) else f"  {k2:20s}: {v}")
-    if "retrieval" in args.tasks:
+    if "retrieval" in args.tasks and not model.use_energy:
+        res["retrieval"] = {"skipped": "no energy model (use_energy=false) -- "
+                                       "energy-based drug ranking is undefined for the VAE ablation"}
+        print("\n[retrieval] skipped: ablation has no energy model")
+    elif "retrieval" in args.tasks:
         res["retrieval"] = task_retrieval(model, cfg, Xva, ova, cva, ava, n_pert,
                                           n_cells=ecfg.get("retrieval_cells", 4000))
         print("\n=== ENERGY-BASED DRUG RETRIEVAL ===")
